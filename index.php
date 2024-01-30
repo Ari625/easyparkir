@@ -1,3 +1,24 @@
+<?php
+require "functions.php";
+date_default_timezone_set("Asia/jakarta");
+if (isset($_POST["kirimDataMasuk"])) {
+   if (tambah($_POST) > 0) {
+      echo "
+      <script>
+         alert('Data Berhasil Ditambahkan');
+         document.location.href = 'index.php';
+      </script>
+      ";
+   } else {
+      echo "
+      <script>
+         alert('Data Gagal Ditambahkan');
+         document.location.href = 'index.php';
+      </script>
+      ";
+   }
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,10 +35,13 @@
          display: none;
          /* Sembunyikan semua konten awal */
       }
+      #masuk{
+         display:contents;
+      }
    </style>
 </head>
 
-<body>
+<body onload="displayTime()">
 
    <nav class="navbar bg-body-secondary shadow-sm">
       <div class="container-fluid">
@@ -26,6 +50,7 @@
                EASY PARKIR
             </text>
          </span>
+         <span id="current-time"></span>
       </div>
    </nav>
 
@@ -48,26 +73,30 @@
             <div id="masuk" class="content">
                <!-- Konten untuk tombol masuk -->
                <h4>Masuk Parkir</h2>
-               <form action="" method="post">
-                  <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor">
-                  <select class="form-select mt-2" aria-label="Default select example" name="merk" id="merk">
-                     <option selected>Pilih Merk</option>
-                     <option value="1">Yamaha</option>
-                     <option value="2">Honda</option>
-                     <option value="3">Kawasaki</option>
-                     <option value="4">Suzuki</option>
-                     <option value="5">Lainnya</option>
-                  </select>
-                  <input type="hidden" name="waktuMasuk" value="">
-               </form>
+                  <form action="" method="post" enctype="multipart/form-data">
+                     <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
+                     <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor">
+                     <select class="form-select mt-2 mb-2" aria-label="Default select example" name="merk" id="merk">
+                        <option selected>Pilih Merk</option>
+                        <option value="1">Yamaha</option>
+                        <option value="2">Honda</option>
+                        <option value="3">Kawasaki</option>
+                        <option value="4">Suzuki</option>
+                        <option value="5">Lainnya</option>
+                     </select>
+                     <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
+                     <input type="file" name="gambar" id="gambar" class="mb-2">
+                     <br>
+                     <input type="submit" value="Kirim" name="kirimDataMasuk" class="btn btn-primary w-100">
+                  </form>
             </div>
 
             <div id="keluar" class="content">
                <!-- Konten untuk tombol keluar -->
                <h4>Keluar Parkir</h2>
-               <form action="" method="post">
+                  <form action="" method="post">
 
-               </form>
+                  </form>
             </div>
 
             <div id="listKendaraan" class="content">
@@ -94,6 +123,32 @@
          }
          document.getElementById(contentId).style.display = "block"; // Tampilkan konten yang sesuai dengan tombol yang diklik
       }
+
+      function displayTime() {
+         var now = new Date();
+         var hours = now.getHours();
+         var minutes = now.getMinutes();
+         var seconds = now.getSeconds();
+
+         // Menambahkan nol di depan angka jika angka tersebut kurang dari 10
+         hours = addZeroPadding(hours);
+         minutes = addZeroPadding(minutes);
+         seconds = addZeroPadding(seconds);
+
+         var timeString = hours + ":" + minutes + ":" + seconds;
+         document.getElementById("current-time").textContent = timeString;
+      }
+
+      function addZeroPadding(number) {
+         if (number < 10) {
+            return "0" + number;
+         } else {
+            return number;
+         }
+      }
+
+      // Memperbarui waktu setiap detik
+      setInterval(displayTime, 1000);
    </script>
 </body>
 

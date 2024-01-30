@@ -11,4 +11,60 @@ function query($query)
    }
    return $rows;
 }
+
+function tambah($data)
+{
+   global $conn;
+   $platNo = htmlspecialchars($data["platNo"]);
+   $merk = htmlspecialchars($data["merk"]);
+   $waktuMasuk = $data["waktuMasuk"];
+
+   $gambar = upload();
+   if (!$gambar) {
+      return false;
+   }
+
+
+   $query = "INSERT INTO k_masuk value('$platNo','$waktuMasuk','$merk', '$gambar')";
+   mysqli_query($conn, $query);
+
+   return mysqli_affected_rows($conn);
+}
+function upload()
+{
+   $namaFile = $_FILES["gambar"]["name"];
+   $ukuranFile = $_FILES["gambar"]["size"];
+   $error = $_FILES["gambar"]["error"];
+   $tmpName = $_FILES["gambar"]["tmp_name"];
+
+   if ($error === 4) {
+      echo "<script>
+            alert('Pilih Gambar Terlebih Dahulu');
+            </script>";
+      return false;
+   }
+   $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
+   $ekstensiGambar = explode('.', $namaFile);
+   $ekstensiGambar = strtolower(end($ekstensiGambar));
+   if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+      echo "<script>
+            alert('Yang Anda Upload Bukan Gambar!');
+            </script>";
+      return false;
+   }
+   if ($ukuranFile > 2097152) {
+      echo "<script>
+            alert('Ukuran Gambar Terlalu Besar');
+            </script>";
+      return false;
+   }
+
+   $namaFileBaru = uniqid();
+   $namaFileBaru .= '.';
+   $namaFileBaru .= $ekstensiGambar;
+
+   move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+
+   return $namaFileBaru;
+}
 ?>
