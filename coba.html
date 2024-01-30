@@ -3,46 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tampilan Berbeda Sesuai Tombol</title>
-<style>
-  .content {
-    display: none; /* Sembunyikan semua konten awal */
-  }
-</style>
-</head>
-<body>
-
-<div id="content1" class="content">
-  <!-- Konten untuk tombol 1 -->
-  <h2>Konten 1</h2>
-  <p>Ini adalah konten untuk tombol 1.</p>
-</div>
-
-<div id="content2" class="content">
-  <!-- Konten untuk tombol 2 -->
-  <h2>Konten 2</h2>
-  <p>Ini adalah konten untuk tombol 2.</p>
-</div>
-
-<div id="content3" class="content">
-  <!-- Konten untuk tombol 3 -->
-  <h2>Konten 3</h2>
-  <p>Ini adalah konten untuk tombol 3.</p>
-</div>
-
-<button onclick="showContent('content1')">Tampilkan Konten 1</button>
-<button onclick="showContent('content2')">Tampilkan Konten 2</button>
-<button onclick="showContent('content3')">Tampilkan Konten 3</button>
-
+<title>Waktu Saat Ini</title>
 <script>
-  function showContent(contentId) {
-    var contents = document.getElementsByClassName("content");
-    for (var i = 0; i < contents.length; i++) {
-      contents[i].style.display = "none"; // Sembunyikan semua konten
-    }
-    document.getElementById(contentId).style.display = "block"; // Tampilkan konten yang sesuai dengan tombol yang diklik
+  function displayTime() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+
+    // Menambahkan nol di depan angka jika angka tersebut kurang dari 10
+    hours = addZeroPadding(hours);
+    minutes = addZeroPadding(minutes);
+    seconds = addZeroPadding(seconds);
+
+    var timeString = hours + ":" + minutes + ":" + seconds;
+    document.getElementById("current-time").textContent = timeString;
   }
+
+  function addZeroPadding(number) {
+    if (number < 10) {
+      return "0" + number;
+    } else {
+      return number;
+    }
+  }
+
+  // Memperbarui waktu setiap detik
+  setInterval(displayTime, 1000);
 </script>
+</head>
+<body onload="displayTime()">
+
+<h1>Waktu Saat Ini</h1>
+<p>Waktu sekarang: <span id="current-time"></span></p>
 
 </body>
 </html>
