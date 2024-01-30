@@ -16,10 +16,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
    }
 }
 
-if (isset($_SESSION["login"])) {
-   header("location: index.php");
-   exit;
-}
+// if (isset($_SESSION["login"])) {
+//    header("location: index.php");
+//    exit;
+// }
 
 if (isset($_POST["login"])) {
    $username = $_POST["username"];
