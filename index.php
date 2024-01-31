@@ -57,7 +57,7 @@ if (isset($_POST["submitKeluar"])) {
 }
 
 $listKendaraan = query("SELECT * FROM k_keluar")
-?>
+   ?>
 <!DOCTYPE html>
 <html>
 
@@ -109,7 +109,8 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                   <button onclick="showContent('keluar')" class="btn nav-item text-white fw-bold ">Keluar</button>
                </li>
                <li class="nav-item">
-                  <button onclick="showContent('listKendaraan')" class="btn nav-item text-white fw-bold ">List Kendaraan</button>
+                  <button onclick="showContent('listKendaraan')" class="btn nav-item text-white fw-bold ">List
+                     Kendaraan</button>
                </li>
             </ul>
          </div>
@@ -193,37 +194,45 @@ $listKendaraan = query("SELECT * FROM k_keluar")
             <div id="listKendaraan" class="content">
                <!-- Konten untuk tombol list kendaraan -->
                <h4>List kendaraan</h4>
-               <table class="table-bordered" >
+               <table class="table-bordered">
                   <tr>
-                     <th class="p-2" >No.</th>
-                     <th class="p-2" >Plat Nomor</th>
-                     <th class="p-2" >Waktu Masuk</th>
-                     <th class="p-2" >Waktu Keluar</th>
-                     <th class="p-2" >Merk</th>
+                     <th class="p-2">No.</th>
+                     <th class="p-2">Plat Nomor</th>
+                     <th class="p-2">Waktu Masuk</th>
+                     <th class="p-2">Waktu Keluar</th>
+                     <th class="p-2">Merk</th>
                   </tr>
 
                   <?php
                   $i = 1;
-                  foreach($listKendaraan as $row) : 
-                  ?>
+                  foreach ($listKendaraan as $row):
+                     ?>
                      <tr>
-                        <td class="p-1 text-center"><?= $i ?></td>
-                        <td class="p-1" ><?= $row["plat_no"] ?></td>
-                        <td class="p-1" ><?= $row["waktu_masuk"] ?></td>
-                        <td class="p-1" ><?= $row["waktu_keluar"] ?></td>
-                        <td class="p-1" >
-                        <?php if ($row["merk"] == 1) {
-                           echo "Yamaha";
-                        } elseif ($row["merk"] == 2) {
-                           echo "Honda";
-                        } elseif ($row["merk"] == 3) {
-                           echo "Kawasaki";
-                        } elseif ($row["merk"] == 4) {
-                           echo "Suzuki";
-                        } else {
-                           echo "Lainnya";
-                        }
-                        ?>
+                        <td class="p-1 text-center">
+                           <?= $i ?>
+                        </td>
+                        <td class="p-1">
+                           <?= $row["plat_no"] ?>
+                        </td>
+                        <td class="p-1">
+                           <?= $row["waktu_masuk"] ?>
+                        </td>
+                        <td class="p-1">
+                           <?= $row["waktu_keluar"] ?>
+                        </td>
+                        <td class="p-1">
+                           <?php if ($row["merk"] == 1) {
+                              echo "Yamaha";
+                           } elseif ($row["merk"] == 2) {
+                              echo "Honda";
+                           } elseif ($row["merk"] == 3) {
+                              echo "Kawasaki";
+                           } elseif ($row["merk"] == 4) {
+                              echo "Suzuki";
+                           } else {
+                              echo "Lainnya";
+                           }
+                           ?>
                         </td>
                      </tr>
                   <?php endforeach ?>
