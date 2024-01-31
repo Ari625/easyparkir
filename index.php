@@ -132,7 +132,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                      <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
                      <input type="file" name="gambar" id="gambar" class="mb-2">
                      <br>
-                     <input type="submit" value="Kirim" name="kirimDataMasuk" class="btn btn-primary w-100">
+                     <input type="submit" value="Kirim" name="kirimDataMasuk" class="btn btn-success w-100">
                   </form>
             </div>
 
@@ -239,7 +239,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                </table>
             </div>
          </div>
-         <div class="card-footer text-center ">
+         <div class="card-footer">
             <text class="text-secondary">
                &copy2024
             </text>
