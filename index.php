@@ -30,7 +30,7 @@ if (isset($_POST["btnCari"])) {
    $dataKendaraanMasuk = cari($_POST["keyword"])[0];
 }
 
-if(isset($_POST["submitKeluar"])){
+if (isset($_POST["submitKeluar"])) {
    if (tambahDataKeluar($_POST) > 0) {
       echo "
       <script>
@@ -82,7 +82,7 @@ if(isset($_POST["submitKeluar"])){
          </span>
          <span id="current-time"></span>
          <span>
-            <a name="logout" class="btn btn-danger" href="logout.php" >Logout</a>
+            <a name="logout" class="btn btn-danger" href="logout.php">Logout</a>
          </span>
       </div>
    </nav>
@@ -152,18 +152,20 @@ if(isset($_POST["submitKeluar"])){
                      <form action="" method="post" class="mt-3">
                         <label for="platNo">Plat Nomor</label>
                         <input type="text" name="platNo" class="form-control mb-1" id="platNo"
-                           value='<?= $dataKendaraanMasuk["plat_no"] ?>' disabled >
+                           value='<?= $dataKendaraanMasuk["plat_no"] ?>' readonly>
                         <label for="waktuMasuk">Waktu Masuk</label>
                         <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
-                           value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' disabled >
+                           value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' readonly>
                         <label for="waktuKeluar">Waktu Keluar</label>
-                        <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1" value="<?= date("Y-m-d H:i:s"); ?>"  >
-                        <label for="merk">Merk</label>
-                        <input type="text" name="merk" id="merk" value="<?= $namaMerk ?>" disabled class="form-control" >
+                        <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
+                           value="<?= date("Y-m-d H:i:s"); ?>">
+                        <label for="namaMerk">Merk</label>
+                        <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
+                        <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>" class="form-control">
                         <br>
-                        <img src="img/<?=$dataKendaraanMasuk['ket'];?>" width="70" alt="" class="">
-                        <input type="file" name="gambar">
-                        <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary" >
+                        <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
+                        <input type="file" name="gambar" id="gambar">
+                        <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
                      </form>
                   <?php else: ?>
 

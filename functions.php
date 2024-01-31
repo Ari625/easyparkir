@@ -45,6 +45,8 @@ if (!$gambar){
 
 $query = "INSERT INTO k_keluar VALUES ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
 mysqli_query($conn, $query);
+
+return mysqli_affected_rows($conn);
 }
 
 function upload()
@@ -63,7 +65,7 @@ function upload()
    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
    $ekstensiGambar = explode('.', $namaFile);
    $ekstensiGambar = strtolower(end($ekstensiGambar));
-   if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+   if (in_array($ekstensiGambar, $ekstensiGambarValid)) {
       echo "<script>
             alert('Yang Anda Upload Bukan Gambar!');
             </script>";
