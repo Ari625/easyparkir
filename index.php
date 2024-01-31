@@ -55,6 +55,8 @@ if (isset($_POST["submitKeluar"])) {
       ";
    }
 }
+
+$listKendaraan = query("SELECT * FROM k_keluar")
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,7 +75,7 @@ if (isset($_POST["submitKeluar"])) {
          /* Sembunyikan semua konten awal */
       }
 
-      #keluar {
+      #listKendaraan {
          display: contents;
       }
    </style>
@@ -98,16 +100,16 @@ if (isset($_POST["submitKeluar"])) {
 
    <div class="p-3 position-absolute top-50 start-50 translate-middle">
       <div class="card" style="height : auto; width: auto;">
-         <div class="card-header">
+         <div class="card-header bg-success">
             <ul class="nav justify-content-center">
                <li class="nav-item">
-                  <button onclick="showContent('masuk')" class="btn nav-item">Masuk</button>
+                  <button onclick="showContent('masuk')" class="btn nav-item text-white fw-bold ">Masuk</button>
                </li>
                <li class="nav-item">
-                  <button onclick="showContent('keluar')" class="btn nav-item">Keluar</button>
+                  <button onclick="showContent('keluar')" class="btn nav-item text-white fw-bold ">Keluar</button>
                </li>
                <li class="nav-item">
-                  <button onclick="showContent('listKendaraan')" class="btn nav-item">List Kendaraan</button>
+                  <button onclick="showContent('listKendaraan')" class="btn nav-item text-white fw-bold ">List Kendaraan</button>
                </li>
             </ul>
          </div>
@@ -191,8 +193,40 @@ if (isset($_POST["submitKeluar"])) {
             <div id="listKendaraan" class="content">
                <!-- Konten untuk tombol list kendaraan -->
                <h4>List kendaraan</h4>
-               <table>
+               <table class="table-bordered" >
+                  <tr>
+                     <th class="p-2" >No.</th>
+                     <th class="p-2" >Plat Nomor</th>
+                     <th class="p-2" >Waktu Masuk</th>
+                     <th class="p-2" >Waktu Keluar</th>
+                     <th class="p-2" >Merk</th>
+                  </tr>
 
+                  <?php
+                  $i = 1;
+                  foreach($listKendaraan as $row) : 
+                  ?>
+                     <tr>
+                        <td class="p-1 text-center"><?= $i ?></td>
+                        <td class="p-1" ><?= $row["plat_no"] ?></td>
+                        <td class="p-1" ><?= $row["waktu_masuk"] ?></td>
+                        <td class="p-1" ><?= $row["waktu_keluar"] ?></td>
+                        <td class="p-1" >
+                        <?php if ($row["merk"] == 1) {
+                           echo "Yamaha";
+                        } elseif ($row["merk"] == 2) {
+                           echo "Honda";
+                        } elseif ($row["merk"] == 3) {
+                           echo "Kawasaki";
+                        } elseif ($row["merk"] == 4) {
+                           echo "Suzuki";
+                        } else {
+                           echo "Lainnya";
+                        }
+                        ?>
+                        </td>
+                     </tr>
+                  <?php endforeach ?>
                </table>
             </div>
          </div>
