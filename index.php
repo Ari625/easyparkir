@@ -74,10 +74,6 @@ $listKendaraan = query("SELECT * FROM k_keluar")
          display: none;
          /* Sembunyikan semua konten awal */
       }
-
-      #listKendaraan {
-         display: contents;
-      }
    </style>
 </head>
 
