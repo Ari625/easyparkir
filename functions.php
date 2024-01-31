@@ -12,7 +12,7 @@ function query($query)
    return $rows;
 }
 
-function tambah($data)
+function tambahDataMasuk($data)
 {
    global $conn;
    $platNo = htmlspecialchars($data["platNo"]);
@@ -30,6 +30,23 @@ function tambah($data)
 
    return mysqli_affected_rows($conn);
 }
+
+function tambahDataKeluar($data){
+global $conn;
+$platNo = htmlspecialchars($data["platNo"]);
+$merk = htmlspecialchars($data["merk"]);
+$waktuMasuk = $data["waktuMasuk"];
+$waktuKeluar = $data["waktuKeluar"];
+
+$gambar = upload();
+if (!$gambar){
+   return false;
+}
+
+$query = "INSERT INTO k_keluar VALUES ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
+mysqli_query($conn, $query);
+}
+
 function upload()
 {
    $namaFile = $_FILES["gambar"]["name"];
@@ -66,5 +83,11 @@ function upload()
    move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 
    return $namaFileBaru;
+}
+function cari($keyword)
+{
+   $query = "SELECT * FROM k_masuk WHERE plat_no LIKE '%$keyword%'";
+
+   return query($query);
 }
 ?>

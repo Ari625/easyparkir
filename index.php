@@ -1,8 +1,37 @@
 <?php
+session_start();
 require "functions.php";
 date_default_timezone_set("Asia/jakarta");
+
+if (!isset($_SESSION["login"])) {
+   header("location: login.php");
+   exit;
+}
+
 if (isset($_POST["kirimDataMasuk"])) {
-   if (tambah($_POST) > 0) {
+   if (tambahDataMasuk($_POST) > 0) {
+      echo "
+      <script>
+         alert('Data Berhasil Ditambahkan');
+         document.location.href = 'index.php';
+      </script>
+      ";
+   } else {
+      echo "
+      <script>
+         alert('Data Gagal Ditambahkan');
+         document.location.href = 'index.php';
+      </script>
+      ";
+   }
+}
+
+if (isset($_POST["btnCari"])) {
+   $dataKendaraanMasuk = cari($_POST["keyword"])[0];
+}
+
+if(isset($_POST["submitKeluar"])){
+   if (tambahDataKeluar($_POST) > 0) {
       echo "
       <script>
          alert('Data Berhasil Ditambahkan');
@@ -35,8 +64,9 @@ if (isset($_POST["kirimDataMasuk"])) {
          display: none;
          /* Sembunyikan semua konten awal */
       }
-      #masuk{
-         display:contents;
+
+      #keluar {
+         display: contents;
       }
    </style>
 </head>
@@ -51,11 +81,14 @@ if (isset($_POST["kirimDataMasuk"])) {
             </text>
          </span>
          <span id="current-time"></span>
+         <span>
+            <a name="logout" class="btn btn-danger" href="logout.php" >Logout</a>
+         </span>
       </div>
    </nav>
 
    <div class="p-3 position-absolute top-50 start-50 translate-middle">
-      <div class="card" style="height : 25rem; width: 25rem;">
+      <div class="card" style="height : auto; width: auto;">
          <div class="card-header">
             <ul class="nav justify-content-center">
                <li class="nav-item">
@@ -94,9 +127,47 @@ if (isset($_POST["kirimDataMasuk"])) {
             <div id="keluar" class="content">
                <!-- Konten untuk tombol keluar -->
                <h4>Keluar Parkir</h2>
-                  <form action="" method="post">
-
+                  <form action="" method="post" class="row g-3">
+                     <div class="col-auto g-3">
+                        <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
+                           class="g-col-6 form-control" autofocus>
+                     </div>
+                     <div class="col-auto">
+                        <input type="submit" value="Cari!" name="btnCari" class=" btn btn-primary">
+                     </div>
                   </form>
+                  <?php if (isset($_POST["btnCari"])): ?>
+                     <?php if ($dataKendaraanMasuk["merk"] == 1) {
+                        $namaMerk = "Yamaha";
+                     } elseif ($dataKendaraanMasuk["merk"] == 2) {
+                        $namaMerk = "Honda";
+                     } elseif ($dataKendaraanMasuk["merk"] == 3) {
+                        $namaMerk = "Kawasaki";
+                     } elseif ($dataKendaraanMasuk["merk"] == 4) {
+                        $namaMerk = "Suzuki";
+                     } else {
+                        $namaMerk = "Lainnya";
+                     }
+                     ?>
+                     <form action="" method="post" class="mt-3">
+                        <label for="platNo">Plat Nomor</label>
+                        <input type="text" name="platNo" class="form-control mb-1" id="platNo"
+                           value='<?= $dataKendaraanMasuk["plat_no"] ?>' disabled >
+                        <label for="waktuMasuk">Waktu Masuk</label>
+                        <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
+                           value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' disabled >
+                        <label for="waktuKeluar">Waktu Keluar</label>
+                        <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1" value="<?= date("Y-m-d H:i:s"); ?>"  >
+                        <label for="merk">Merk</label>
+                        <input type="text" name="merk" id="merk" value="<?= $namaMerk ?>" disabled class="form-control" >
+                        <br>
+                        <img src="img/<?=$dataKendaraanMasuk['ket'];?>" width="70" alt="" class="">
+                        <input type="file" name="gambar">
+                        <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary" >
+                     </form>
+                  <?php else: ?>
+
+                  <?php endif ?>
             </div>
 
             <div id="listKendaraan" class="content">
@@ -115,41 +186,7 @@ if (isset($_POST["kirimDataMasuk"])) {
       </div>
    </div>
 
-   <script>
-      function showContent(contentId) {
-         var contents = document.getElementsByClassName("content");
-         for (var i = 0; i < contents.length; i++) {
-            contents[i].style.display = "none"; // Sembunyikan semua konten
-         }
-         document.getElementById(contentId).style.display = "block"; // Tampilkan konten yang sesuai dengan tombol yang diklik
-      }
-
-      function displayTime() {
-         var now = new Date();
-         var hours = now.getHours();
-         var minutes = now.getMinutes();
-         var seconds = now.getSeconds();
-
-         // Menambahkan nol di depan angka jika angka tersebut kurang dari 10
-         hours = addZeroPadding(hours);
-         minutes = addZeroPadding(minutes);
-         seconds = addZeroPadding(seconds);
-
-         var timeString = hours + ":" + minutes + ":" + seconds;
-         document.getElementById("current-time").textContent = timeString;
-      }
-
-      function addZeroPadding(number) {
-         if (number < 10) {
-            return "0" + number;
-         } else {
-            return number;
-         }
-      }
-
-      // Memperbarui waktu setiap detik
-      setInterval(displayTime, 1000);
-   </script>
+   <script src="lib/js/script.js"></script>
 </body>
 
 </html>

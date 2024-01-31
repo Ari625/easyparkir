@@ -10,7 +10,7 @@ if (isset($_POST["login"])) {
    $username = $_POST["username"];
    $password = $_POST["password"];
 
-   $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+   $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
    if (mysqli_num_rows($result) === 1) {
       $row = mysqli_fetch_assoc($result);
       if (password_verify($password, $row["password"])) {
@@ -36,7 +36,7 @@ if (isset($_POST["login"])) {
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
-   <link href="css/sign-in.css" rel="stylesheet">
+   <link href="lib/css/sign-in.css" rel="stylesheet">
    <title>Login</title>
 </head>
 
