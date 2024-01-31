@@ -7,6 +7,14 @@ if (!isset($_SESSION["login"])) {
    header("location: login.php");
    exit;
 }
+function showContent($contentId) {
+   $_SESSION["lastDisplayedContent"] = $contentId;
+}
+if (isset($_SESSION["lastDisplayedContent"])) {
+   $lastDisplayedContent = $_SESSION["lastDisplayedContent"];
+} else {
+   $lastDisplayedContent = "masuk";
+}
 
 if (isset($_POST["kirimDataMasuk"])) {
    if (tambahDataMasuk($_POST) > 0) {
@@ -59,26 +67,16 @@ if (isset($_POST["submitKeluar"])) {
 $listKendaraan = query("SELECT * FROM k_keluar")
    ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
    <meta charset='utf-8'>
    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
    <title>EASY PARKIR</title>
-   <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-   <style>
-      .content {
-         display: none;
-         /* Sembunyikan semua konten awal */
-      }
-
-      #masuk {
-         display: contents;
-      }
-   </style>
+   <style></style>
 </head>
 
 <body onload="displayTime()">
@@ -114,10 +112,11 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                </li>
             </ul>
          </div>
+
          <div class="card-body ">
-            <div id="masuk" class="content">
+            <div id="masuk" class="content" style="display: <?= $lastDisplayedContent == 'masuk' ? 'block' : 'none' ?>;">
                <!-- Konten untuk tombol masuk -->
-               <h4 class="text-center" >Masuk Parkir</h2>
+               <h4 class="text-center" >Masuk Parkir</h4>
                   <form action="" method="post" enctype="multipart/form-data">
                      <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
                      <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor">
@@ -136,7 +135,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                   </form>
             </div>
 
-            <div id="keluar" class="content">
+            <div id="keluar" class="content" style="display: <?= $lastDisplayedContent == 'keluar' ? 'block' : 'none' ?>;">
                <!-- Konten untuk tombol keluar -->
                <h4 class="text-center">Keluar Parkir</h2>
                   <form action="" method="post" class="row g-3 p-3">
@@ -145,7 +144,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                            class="g-col-6 form-control" autofocus>
                      </div>
                      <div class="col-auto">
-                        <input type="submit" value="Cari!" name="btnCari" class=" btn btn-primary">
+                        <input type="submit" value="Cari!" name="btnCari" class=" btn btn-success">
                      </div>
                   </form>
                   <?php if (isset($_POST["btnCari"])): ?>
@@ -205,7 +204,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                   <?php endif ?>
             </div>
 
-            <div id="listKendaraan" class="content">
+            <div id="listKendaraan" class="content" style="display: <?= $lastDisplayedContent == 'listKendaraan' ? 'block' : 'none' ?>;">
                <!-- Konten untuk tombol list kendaraan -->
                <h4 class="text-center" >List kendaraan</h4>
                <table class="table-bordered">
