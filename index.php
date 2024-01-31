@@ -117,7 +117,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
          <div class="card-body ">
             <div id="masuk" class="content">
                <!-- Konten untuk tombol masuk -->
-               <h4>Masuk Parkir</h2>
+               <h4 class="text-center" >Masuk Parkir</h2>
                   <form action="" method="post" enctype="multipart/form-data">
                      <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
                      <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor">
@@ -138,8 +138,8 @@ $listKendaraan = query("SELECT * FROM k_keluar")
 
             <div id="keluar" class="content">
                <!-- Konten untuk tombol keluar -->
-               <h4>Keluar Parkir</h2>
-                  <form action="" method="post" class="row g-3">
+               <h4 class="text-center">Keluar Parkir</h2>
+                  <form action="" method="post" class="row g-3 p-3">
                      <div class="col-auto g-3">
                         <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
                            class="g-col-6 form-control" autofocus>
@@ -162,25 +162,39 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                            $namaMerk = "Lainnya";
                         }
                         ?>
-                        <form action="" method="post" class="mt-3">
-                           <label for="platNo">Plat Nomor</label>
-                           <input type="text" name="platNo" class="form-control mb-1" id="platNo"
-                              value='<?= $dataKendaraanMasuk["plat_no"] ?>' readonly>
-                           <label for="waktuMasuk">Waktu Masuk</label>
-                           <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
-                              value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' readonly>
-                           <label for="waktuKeluar">Waktu Keluar</label>
-                           <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
-                              value="<?= date("Y-m-d H:i:s"); ?>">
-                           <label for="namaMerk">Merk</label>
-                           <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
-                           <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>"
-                              class="form-control">
-                           <br>
-                           <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
-                           <input type="file" name="gambar" id="gambar">
-                           <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
-                        </form>
+                        <div class="container">
+                           <form action="" method="post" class="mt-3">
+                              <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>"
+                                 class="form-control">
+                              <div class="row">
+                                 <div class="col">
+                                    <label for="platNo">Plat Nomor</label>
+                                    <input type="text" name="platNo" class="form-control mb-1" id="platNo"
+                                       value='<?= $dataKendaraanMasuk["plat_no"] ?>' readonly>
+                                 </div>
+                                 <div class="col">
+                                    <label for="namaMerk">Merk</label>
+                                    <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col">
+                                    <label for="waktuMasuk">Waktu Masuk</label>
+                                    <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
+                                       value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' readonly>
+                                 </div>
+                                 <div class="col">
+                                    <label for="waktuKeluar">Waktu Keluar</label>
+                                    <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
+                                       value="<?= date("Y-m-d H:i:s"); ?>">
+                                 </div>
+                              </div>
+                              <br>
+                              <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
+                              <input type="file" name="gambar" id="gambar">
+                              <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
+                           </form>
+                        </div>
                      <?php else: ?>
                         <h6 class="mt-3">
                            Plat Nomor tidak ditemukan
@@ -193,7 +207,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
 
             <div id="listKendaraan" class="content">
                <!-- Konten untuk tombol list kendaraan -->
-               <h4>List kendaraan</h4>
+               <h4 class="text-center" >List kendaraan</h4>
                <table class="table-bordered">
                   <tr>
                      <th class="p-2">No.</th>
