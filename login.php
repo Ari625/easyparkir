@@ -42,9 +42,14 @@ if (isset($_POST["login"])) {
 
 <body>
 
-   <main class="form-signin w-100    m-auto row h-100 jusitify-content-center align-items-center">
+   <main class="form-signin w-100 m-auto row h-100 jusitify-content-center align-items-center">
       <form method="post" action="">
-         <h1 class="h3 mb-3 fw-normal text-center">LOGIN</h1>
+      <div class="" >
+         <h2 class="text-success text-center p-3 rounded " >
+            EASY PARKIR
+         </h2>
+      </div>
+         <!-- <h3 class="h3 mb-3 fw-normal text-center">LOGIN</h3> -->
 
          <?php if (isset($error)): ?>
             <div class="alert alert-danger" role="alert">
@@ -60,7 +65,7 @@ if (isset($_POST["login"])) {
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
             <label for="floatingPassword">Password</label>
          </div>
-         <button class="btn btn-primary w-100 py-2" type="submit" name="login">LOGIN</button>
+         <button class="btn btn-success w-100 py-2" type="submit" name="login">LOGIN</button>
          <p class="mt-5 mb-3 text-body-secondary">&copy;2024</p>
       </form>
    </main>
