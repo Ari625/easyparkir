@@ -239,7 +239,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                </table>
             </div>
          </div>
-         <div class="card-footer">
+         <div class="card-footer text-center ">
             <text class="text-secondary">
                &copy2024
             </text>
