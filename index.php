@@ -27,7 +27,14 @@ if (isset($_POST["kirimDataMasuk"])) {
 }
 
 if (isset($_POST["btnCari"])) {
-   $dataKendaraanMasuk = cari($_POST["keyword"])[0];
+   $dataKendaraanMasuk = cari($_POST["keyword"]);
+   // var_dump($dataKendaraanMasuk);
+   // exit;
+   if ($dataKendaraanMasuk == NULL) {
+      $dataKendaraanMasuk = 0;
+   } else {
+      $dataKendaraanMasuk = cari($_POST["keyword"])[0];
+   }
 }
 
 if (isset($_POST["submitKeluar"])) {
@@ -38,6 +45,7 @@ if (isset($_POST["submitKeluar"])) {
          document.location.href = 'index.php';
       </script>
       ";
+      exit;
    } else {
       echo "
       <script>
@@ -136,37 +144,43 @@ if (isset($_POST["submitKeluar"])) {
                         <input type="submit" value="Cari!" name="btnCari" class=" btn btn-primary">
                      </div>
                   </form>
-                  <?php if (isset($_POST["btnCari"])): ?>
-                     <?php if ($dataKendaraanMasuk["merk"] == 1) {
-                        $namaMerk = "Yamaha";
-                     } elseif ($dataKendaraanMasuk["merk"] == 2) {
-                        $namaMerk = "Honda";
-                     } elseif ($dataKendaraanMasuk["merk"] == 3) {
-                        $namaMerk = "Kawasaki";
-                     } elseif ($dataKendaraanMasuk["merk"] == 4) {
-                        $namaMerk = "Suzuki";
-                     } else {
-                        $namaMerk = "Lainnya";
-                     }
-                     ?>
-                     <form action="" method="post" class="mt-3">
-                        <label for="platNo">Plat Nomor</label>
-                        <input type="text" name="platNo" class="form-control mb-1" id="platNo"
-                           value='<?= $dataKendaraanMasuk["plat_no"] ?>' readonly>
-                        <label for="waktuMasuk">Waktu Masuk</label>
-                        <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
-                           value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' readonly>
-                        <label for="waktuKeluar">Waktu Keluar</label>
-                        <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
-                           value="<?= date("Y-m-d H:i:s"); ?>">
-                        <label for="namaMerk">Merk</label>
-                        <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
-                        <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>" class="form-control">
-                        <br>
-                        <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
-                        <input type="file" name="gambar" id="gambar">
-                        <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
-                     </form>
+                  <?php if (isset($_POST["btnCari"])) : ?>
+                     <?php if ($dataKendaraanMasuk > 0) : ?>
+                        <?php if ($dataKendaraanMasuk["merk"] == 1) {
+                           $namaMerk = "Yamaha";
+                        } elseif ($dataKendaraanMasuk["merk"] == 2) {
+                           $namaMerk = "Honda";
+                        } elseif ($dataKendaraanMasuk["merk"] == 3) {
+                           $namaMerk = "Kawasaki";
+                        } elseif ($dataKendaraanMasuk["merk"] == 4) {
+                           $namaMerk = "Suzuki";
+                        } else {
+                           $namaMerk = "Lainnya";
+                        }
+                        ?>
+                        <form action="" method="post" class="mt-3">
+                           <label for="platNo">Plat Nomor</label>
+                           <input type="text" name="platNo" class="form-control mb-1" id="platNo"
+                              value='<?= $dataKendaraanMasuk["plat_no"] ?>' readonly>
+                           <label for="waktuMasuk">Waktu Masuk</label>
+                           <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
+                              value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' readonly>
+                           <label for="waktuKeluar">Waktu Keluar</label>
+                           <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
+                              value="<?= date("Y-m-d H:i:s"); ?>">
+                           <label for="namaMerk">Merk</label>
+                           <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
+                           <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>" class="form-control">
+                           <br>
+                           <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
+                           <input type="file" name="gambar" id="gambar">
+                           <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
+                        </form>
+                     <?php else : ?>
+                     <h6 class="mt-3" >
+                        Plat Nomor tidak ditemukan
+                     </h6>
+                     <?php endif ?>
                   <?php else: ?>
 
                   <?php endif ?>
