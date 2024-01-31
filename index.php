@@ -88,12 +88,13 @@ if (isset($_POST["submitKeluar"])) {
                EASY PARKIR
             </text>
          </span>
-         <span id="current-time"></span>
-         <span>
-            <a name="logout" class="btn btn-danger" href="logout.php">Logout</a>
-         </span>
+         <span id="current-time" class="justify-content-center"></span>
       </div>
    </nav>
+
+   <div class="p-2">
+      <a name="logout" class="btn btn-danger" href="logout.php">Logout</a>
+   </div>
 
    <div class="p-3 position-absolute top-50 start-50 translate-middle">
       <div class="card" style="height : auto; width: auto;">
@@ -144,8 +145,8 @@ if (isset($_POST["submitKeluar"])) {
                         <input type="submit" value="Cari!" name="btnCari" class=" btn btn-primary">
                      </div>
                   </form>
-                  <?php if (isset($_POST["btnCari"])) : ?>
-                     <?php if ($dataKendaraanMasuk > 0) : ?>
+                  <?php if (isset($_POST["btnCari"])): ?>
+                     <?php if ($dataKendaraanMasuk > 0): ?>
                         <?php if ($dataKendaraanMasuk["merk"] == 1) {
                            $namaMerk = "Yamaha";
                         } elseif ($dataKendaraanMasuk["merk"] == 2) {
@@ -170,16 +171,17 @@ if (isset($_POST["submitKeluar"])) {
                               value="<?= date("Y-m-d H:i:s"); ?>">
                            <label for="namaMerk">Merk</label>
                            <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
-                           <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>" class="form-control">
+                           <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>"
+                              class="form-control">
                            <br>
                            <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
                            <input type="file" name="gambar" id="gambar">
                            <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
                         </form>
-                     <?php else : ?>
-                     <h6 class="mt-3" >
-                        Plat Nomor tidak ditemukan
-                     </h6>
+                     <?php else: ?>
+                        <h6 class="mt-3">
+                           Plat Nomor tidak ditemukan
+                        </h6>
                      <?php endif ?>
                   <?php else: ?>
 
