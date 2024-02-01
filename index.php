@@ -7,7 +7,8 @@ if (!isset($_SESSION["login"])) {
    header("location: login.php");
    exit;
 }
-function showContent($contentId) {
+function showContent($contentId)
+{
    $_SESSION["lastDisplayedContent"] = $contentId;
 }
 if (isset($_SESSION["lastDisplayedContent"])) {
@@ -114,28 +115,30 @@ $listKendaraan = query("SELECT * FROM k_keluar")
          </div>
 
          <div class="card-body ">
-            <div id="masuk" class="content" style="display: <?= $lastDisplayedContent == 'masuk' ? 'block' : 'none' ?>;">
+            <div id="masuk" class="content"
+               style="display: <?= $lastDisplayedContent == 'masuk' ? 'block' : 'none' ?>;">
                <!-- Konten untuk tombol masuk -->
-               <h4 class="text-center" >Masuk Parkir</h4>
-                  <form action="" method="post" enctype="multipart/form-data">
-                     <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
-                     <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor">
-                     <select class="form-select mt-2 mb-2" aria-label="Default select example" name="merk" id="merk">
-                        <option selected>Pilih Merk</option>
-                        <option value="1">Yamaha</option>
-                        <option value="2">Honda</option>
-                        <option value="3">Kawasaki</option>
-                        <option value="4">Suzuki</option>
-                        <option value="5">Lainnya</option>
-                     </select>
-                     <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
-                     <input type="file" name="gambar" id="gambar" class="mb-2">
-                     <br>
-                     <input type="submit" value="Kirim" name="kirimDataMasuk" class="btn btn-success w-100">
-                  </form>
+               <h4 class="text-center">Masuk Parkir</h4>
+               <form action="" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
+                  <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor">
+                  <select class="form-select mt-2 mb-2" aria-label="Default select example" name="merk" id="merk">
+                     <option selected>Pilih Merk</option>
+                     <option value="1">Yamaha</option>
+                     <option value="2">Honda</option>
+                     <option value="3">Kawasaki</option>
+                     <option value="4">Suzuki</option>
+                     <option value="5">Lainnya</option>
+                  </select>
+                  <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
+                  <input type="file" name="gambar" id="gambar" class="mb-2">
+                  <br>
+                  <input type="submit" value="Kirim" name="kirimDataMasuk" class="btn btn-success w-100">
+               </form>
             </div>
 
-            <div id="keluar" class="content" style="display: <?= $lastDisplayedContent == 'keluar' ? 'block' : 'none' ?>;">
+            <div id="keluar" class="content"
+               style="display: <?= $lastDisplayedContent == 'keluar' ? 'block' : 'none' ?>;">
                <!-- Konten untuk tombol keluar -->
                <h4 class="text-center">Keluar Parkir</h2>
                   <form action="" method="post" class="row g-3 p-3">
@@ -204,9 +207,10 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                   <?php endif ?>
             </div>
 
-            <div id="listKendaraan" class="content" style="display: <?= $lastDisplayedContent == 'listKendaraan' ? 'block' : 'none' ?>;">
+            <div id="listKendaraan" class="content"
+               style="display: <?= $lastDisplayedContent == 'listKendaraan' ? 'block' : 'none' ?>;">
                <!-- Konten untuk tombol list kendaraan -->
-               <h4 class="text-center" >List kendaraan</h4>
+               <h4 class="text-center">List kendaraan</h4>
                <table class="table-bordered">
                   <tr>
                      <th class="p-2">No.</th>
@@ -248,6 +252,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                            ?>
                         </td>
                      </tr>
+                     <?php $i++; ?>
                   <?php endforeach ?>
                </table>
             </div>
