@@ -4,16 +4,6 @@ session_start();
 // Fungsi untuk menampilkan konten sesuai tombol yang diklik
 function showContent($contentId) {
     $_SESSION['lastDisplayedContent'] = $contentId;
-    header("Location: index.php"); // Redirect agar perubahan sesi langsung terlihat
-    exit();
-}
-
-// Cek jika session untuk konten terakhir ada
-if(isset($_SESSION['lastDisplayedContent'])) {
-    $lastDisplayedContent = $_SESSION['lastDisplayedContent'];
-} else {
-    // Jika tidak ada, atur default ke konten pertama
-    $lastDisplayedContent = 'content1';
 }
 ?>
 
@@ -43,23 +33,26 @@ if(isset($_SESSION['lastDisplayedContent'])) {
       contents[i].style.display = "none"; // Sembunyikan semua konten
     }
     document.getElementById(contentId).style.display = "block"; // Tampilkan konten yang sesuai dengan tombol yang diklik
+
+    // Redirect kembali ke halaman ini untuk menyimpan status terakhir konten
+    window.location.href = "index.php";
   }
 </script>
 
 <!-- Konten-konten -->
-<div id="content1" class="content" style="display: <?php echo $lastDisplayedContent == 'content1' ? 'block' : 'none'; ?>;">
+<div id="content1" class="content" style="display: <?php echo isset($_SESSION['lastDisplayedContent']) && $_SESSION['lastDisplayedContent'] == 'content1' ? 'block' : 'none'; ?>;">
   <!-- Konten untuk tombol 1 -->
   <h2>Konten 1</h2>
   <p>Ini adalah konten untuk tombol 1.</p>
 </div>
 
-<div id="content2" class="content" style="display: <?php echo $lastDisplayedContent == 'content2' ? 'block' : 'none'; ?>;">
+<div id="content2" class="content" style="display: <?php echo isset($_SESSION['lastDisplayedContent']) && $_SESSION['lastDisplayedContent'] == 'content2' ? 'block' : 'none'; ?>;">
   <!-- Konten untuk tombol 2 -->
   <h2>Konten 2</h2>
   <p>Ini adalah konten untuk tombol 2.</p>
 </div>
 
-<div id="content3" class="content" style="display: <?php echo $lastDisplayedContent == 'content3' ? 'block' : 'none'; ?>;">
+<div id="content3" class="content" style="display: <?php echo isset($_SESSION['lastDisplayedContent']) && $_SESSION['lastDisplayedContent'] == 'content3' ? 'block' : 'none'; ?>;">
   <!-- Konten untuk tombol 3 -->
   <h2>Konten 3</h2>
   <p>Ini adalah konten untuk tombol 3.</p>
