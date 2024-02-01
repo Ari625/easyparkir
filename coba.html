@@ -13,50 +13,20 @@ function showContent($contentId) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Konten Berbeda</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
 
-<h1>Konten Berbeda</h1>
-<div id="content">
-  <!-- Konten akan dimuat di sini -->
-</div>
-
-<button onclick="showContent('content1')">Tampilkan Konten 1</button>
-<button onclick="showContent('content2')">Tampilkan Konten 2</button>
-<button onclick="showContent('content3')">Tampilkan Konten 3</button>
-
-<script>
-  // Fungsi untuk menampilkan konten sesuai tombol yang diklik
-  function showContent(contentId) {
-    var contents = document.getElementsByClassName("content");
-    for (var i = 0; i < contents.length; i++) {
-      contents[i].style.display = "none"; // Sembunyikan semua konten
-    }
-    document.getElementById(contentId).style.display = "block"; // Tampilkan konten yang sesuai dengan tombol yang diklik
-
-    // Redirect kembali ke halaman ini untuk menyimpan status terakhir konten
-    window.location.href = "index.php";
-  }
-</script>
-
-<!-- Konten-konten -->
-<div id="content1" class="content" style="display: <?php echo isset($_SESSION['lastDisplayedContent']) && $_SESSION['lastDisplayedContent'] == 'content1' ? 'block' : 'none'; ?>;">
-  <!-- Konten untuk tombol 1 -->
-  <h2>Konten 1</h2>
-  <p>Ini adalah konten untuk tombol 1.</p>
-</div>
-
-<div id="content2" class="content" style="display: <?php echo isset($_SESSION['lastDisplayedContent']) && $_SESSION['lastDisplayedContent'] == 'content2' ? 'block' : 'none'; ?>;">
-  <!-- Konten untuk tombol 2 -->
-  <h2>Konten 2</h2>
-  <p>Ini adalah konten untuk tombol 2.</p>
-</div>
-
-<div id="content3" class="content" style="display: <?php echo isset($_SESSION['lastDisplayedContent']) && $_SESSION['lastDisplayedContent'] == 'content3' ? 'block' : 'none'; ?>;">
-  <!-- Konten untuk tombol 3 -->
-  <h2>Konten 3</h2>
-  <p>Ini adalah konten untuk tombol 3.</p>
-</div>
-
+    <div class="position-absolute top-0 start-0"></div>
+    <div class="position-absolute top-0 start-50 translate-middle-x"></div>
+    <div class="position-absolute top-0 end-0"></div>
+    <div class="position-absolute top-50 start-0 translate-middle-y">kon</div>
+    <div class="position-absolute top-50 start-50 translate-middle">kon</div>
+    <div class="position-absolute top-50 end-0 translate-middle-y"></div>
+    <div class="position-absolute bottom-0 start-0"></div>
+    <div class="position-absolute bottom-0 start-50 translate-middle-x"></div>
+    <div class="position-absolute bottom-0 end-0"></div>
+  </div>
 </body>
 </html>

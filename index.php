@@ -69,10 +69,11 @@ $listKendaraan = query("SELECT * FROM k_keluar")
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
    <style>
-      .content{
+      .content {
          display: none;
       }
-      #masuk{
+
+      #masuk {
          display: block;
       }
    </style>
@@ -90,13 +91,16 @@ $listKendaraan = query("SELECT * FROM k_keluar")
          <span id="current-time" class="justify-content-center"></span>
       </div>
    </nav>
-
-   <div class="p-2">
-      <a name="logout" class="btn btn-danger" href="logout.php">Logout</a>
+   </div>
+   <div class="d-flex flex-row-reverse">
+      <div class="p-2">
+         <a name="logout" class="btn btn-danger" href="logout.php">Logout</a>
+      </div>
    </div>
 
-   <div class="p-3 position-absolute top-50 start-50 translate-middle">
-      <div class="card" style="height : auto; width: auto;">
+
+   <div class=" position-absolute top-50 start-50 translate-middle">
+      <div class="card" style="height : 350px; width: auto;">
          <div class="card-header bg-success">
             <ul class="nav justify-content-center">
                <li class="nav-item">
@@ -112,7 +116,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
             </ul>
          </div>
 
-         <div class="card-body ">
+         <div class="card-body overflow-y-scroll">
             <div id="masuk" class="content">
                <!-- Konten untuk tombol masuk -->
                <h4 class="text-center">Masuk Parkir</h4>
@@ -136,124 +140,126 @@ $listKendaraan = query("SELECT * FROM k_keluar")
 
             <div id="keluar" class="content">
                <!-- Konten untuk tombol keluar -->
-               <h4 class="text-center">Keluar Parkir</h4 >
-                  <form action="" method="post" class="row g-3 p-3">
-                     <div class="col-auto g-3">
-                        <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
-                           class="g-col-6 form-control" autofocus>
-                     </div>
-                     <div class="col-auto">
-                        <input type="submit" value="Cari!" name="btnCari" class=" btn btn-success">
-                     </div>
-                  </form>
-                  <?php if (isset($_POST["btnCari"])): ?>
-                     <?php if ($dataKendaraanMasuk > 0): ?>
-                        <?php if ($dataKendaraanMasuk["merk"] == 1) {
-                           $namaMerk = "Yamaha";
-                        } elseif ($dataKendaraanMasuk["merk"] == 2) {
-                           $namaMerk = "Honda";
-                        } elseif ($dataKendaraanMasuk["merk"] == 3) {
-                           $namaMerk = "Kawasaki";
-                        } elseif ($dataKendaraanMasuk["merk"] == 4) {
-                           $namaMerk = "Suzuki";
-                        } else {
-                           $namaMerk = "Lainnya";
-                        }
-                        ?>
-                        <div class="container">
-                           <form action="" method="post" class="mt-3">
-                              <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>"
-                                 class="form-control">
-                              <div class="row">
-                                 <div class="col">
-                                    <label for="platNo">Plat Nomor</label>
-                                    <input type="text" name="platNo" class="form-control mb-1" id="platNo"
-                                       value='<?= $dataKendaraanMasuk["plat_no"] ?>' readonly>
-                                 </div>
-                                 <div class="col">
-                                    <label for="namaMerk">Merk</label>
-                                    <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
-                                 </div>
+               <h4 class="text-center">Keluar Parkir</h4>
+               <form action="" method="post" class="row g-3 p-3">
+                  <div class="col-auto g-3">
+                     <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
+                        class="g-col-6 form-control" autofocus>
+                  </div>
+                  <div class="col-auto">
+                     <input type="submit" value="Cari!" name="btnCari" class=" btn btn-success">
+                  </div>
+               </form>
+               <?php if (isset($_POST["btnCari"])): ?>
+                  <?php if ($dataKendaraanMasuk > 0): ?>
+                     <?php if ($dataKendaraanMasuk["merk"] == 1) {
+                        $namaMerk = "Yamaha";
+                     } elseif ($dataKendaraanMasuk["merk"] == 2) {
+                        $namaMerk = "Honda";
+                     } elseif ($dataKendaraanMasuk["merk"] == 3) {
+                        $namaMerk = "Kawasaki";
+                     } elseif ($dataKendaraanMasuk["merk"] == 4) {
+                        $namaMerk = "Suzuki";
+                     } else {
+                        $namaMerk = "Lainnya";
+                     }
+                     ?>
+                     <div class="container">
+                        <form action="" method="post" class="mt-3" enctype="multipart/form-data">
+                           <input type="hidden" name="merk" id="merk" value="<?= $dataKendaraanMasuk['merk']; ?>"
+                              class="form-control">
+                           <div class="row">
+                              <div class="col">
+                                 <label for="platNo">Plat Nomor</label>
+                                 <input type="text" name="platNo" class="form-control mb-1" id="platNo"
+                                    value='<?= $dataKendaraanMasuk["plat_no"] ?>' readonly>
                               </div>
-                              <div class="row">
-                                 <div class="col">
-                                    <label for="waktuMasuk">Waktu Masuk</label>
-                                    <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
-                                       value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' readonly>
-                                 </div>
-                                 <div class="col">
-                                    <label for="waktuKeluar">Waktu Keluar</label>
-                                    <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
-                                       value="<?= date("Y-m-d H:i:s"); ?>">
-                                 </div>
+                              <div class="col">
+                                 <label for="namaMerk">Merk</label>
+                                 <input type="text" id="namaMerk" value="<?= $namaMerk; ?>" readonly class="form-control">
                               </div>
-                              <br>
-                              <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
-                              <input type="file" name="gambar" id="gambar">
-                              <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
-                           </form>
-                        </div>
-                     <?php else: ?>
-                        <h6 class="mt-3">
-                           Plat Nomor tidak ditemukan
-                        </h6>
-                     <?php endif ?>
+                           </div>
+                           <div class="row">
+                              <div class="col">
+                                 <label for="waktuMasuk">Waktu Masuk</label>
+                                 <input type="text" name="waktuMasuk" class="form-control mb-1" id="waktuMasuk"
+                                    value='<?= $dataKendaraanMasuk["waktu_masuk"] ?>' readonly>
+                              </div>
+                              <div class="col">
+                                 <label for="waktuKeluar">Waktu Keluar</label>
+                                 <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
+                                    value="<?= date("Y-m-d H:i:s"); ?>">
+                              </div>
+                           </div>
+                           <br>
+                           <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
+                           <input type="file" name="gambar" id="gambar">
+                           <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
+                        </form>
+                     </div>
                   <?php else: ?>
-
+                     <h6 class="mt-3">
+                        Plat Nomor tidak ditemukan
+                     </h6>
                   <?php endif ?>
+               <?php else: ?>
+
+               <?php endif ?>
             </div>
 
             <div id="listKendaraan" class="content" ">
                <!-- Konten untuk tombol list kendaraan -->
                <h4 class=" text-center">List kendaraan</h4>
-               <table class="table-bordered">
-                  <tr>
-                     <th class="p-2">No.</th>
-                     <th class="p-2">Plat Nomor</th>
-                     <th class="p-2">Waktu Masuk</th>
-                     <th class="p-2">Waktu Keluar</th>
-                     <th class="p-2">Merk</th>
-                     <th class="p-2">Keterangan</th>
-                  </tr>
-
-                  <?php
-                  $i = 1;
-                  foreach ($listKendaraan as $row):
-                     ?>
+               <div class="overflow-x-scroll">
+                  <table class="table-bordered">
                      <tr>
-                        <td class="p-1 text-center">
-                           <?= $i ?>
-                        </td>
-                        <td class="p-1">
-                           <?= $row["plat_no"] ?>
-                        </td>
-                        <td class="p-1">
-                           <?= $row["waktu_masuk"] ?>
-                        </td>
-                        <td class="p-1">
-                           <?= $row["waktu_keluar"] ?>
-                        </td>
-                        <td class="p-1">
-                           <?php if ($row["merk"] == 1) {
-                              echo "Yamaha";
-                           } elseif ($row["merk"] == 2) {
-                              echo "Honda";
-                           } elseif ($row["merk"] == 3) {
-                              echo "Kawasaki";
-                           } elseif ($row["merk"] == 4) {
-                              echo "Suzuki";
-                           } else {
-                              echo "Lainnya";
-                           }
-                           ?>
-                        </td>
-                        <td>
-                           <a class="btn btn-primary " href="img.php?img=<?= $row['ket'] ?>">Lihat Foto</a>
-                        </td>
+                        <th class="p-2">No.</th>
+                        <th class="p-2">Plat Nomor</th>
+                        <th class="p-2">Waktu Masuk</th>
+                        <th class="p-2">Waktu Keluar</th>
+                        <th class="p-2">Merk</th>
+                        <th class="p-2">Keterangan</th>
                      </tr>
-                     <?php $i++; ?>
-                  <?php endforeach ?>
-               </table>
+
+                     <?php
+                     $i = 1;
+                     foreach ($listKendaraan as $row):
+                        ?>
+                        <tr>
+                           <td class="p-1 text-center">
+                              <?= $i ?>
+                           </td>
+                           <td class="p-1">
+                              <?= $row["plat_no"] ?>
+                           </td>
+                           <td class="p-1">
+                              <?= $row["waktu_masuk"] ?>
+                           </td>
+                           <td class="p-1">
+                              <?= $row["waktu_keluar"] ?>
+                           </td>
+                           <td class="p-1">
+                              <?php if ($row["merk"] == 1) {
+                                 echo "Yamaha";
+                              } elseif ($row["merk"] == 2) {
+                                 echo "Honda";
+                              } elseif ($row["merk"] == 3) {
+                                 echo "Kawasaki";
+                              } elseif ($row["merk"] == 4) {
+                                 echo "Suzuki";
+                              } else {
+                                 echo "Lainnya";
+                              }
+                              ?>
+                           </td>
+                           <td>
+                              <a class="btn btn-primary  " href="img.php?img=<?= $row['ket'] ?>">Lihat Foto</a>
+                           </td>
+                        </tr>
+                        <?php $i++; ?>
+                     <?php endforeach ?>
+                  </table>
+               </div>
             </div>
          </div>
          <div class="card-footer">

@@ -44,7 +44,7 @@ function tambahDataKeluar($data)
       return false;
    }
 
-   $query = "INSERT INTO k_keluar VALUES ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
+   $query = "INSERT INTO k_keluar value ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
    mysqli_query($conn, $query);
 
    return mysqli_affected_rows($conn);
@@ -103,7 +103,7 @@ function uploadKeluar()
    $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
    $ekstensiGambar = explode('.', $namaFile);
    $ekstensiGambar = strtolower(end($ekstensiGambar));
-   if (in_array($ekstensiGambar, $ekstensiGambarValid)) {
+   if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
       echo "<script>
             alert('Yang Anda Upload Bukan Gambar!');
             </script>";
