@@ -1,65 +1,69 @@
+<?php
+session_start();
+
+// Fungsi untuk menampilkan konten sesuai tombol yang diklik
+function showContent($contentId) {
+    $_SESSION['lastDisplayedContent'] = $contentId;
+    header("Location: index.php"); // Redirect agar perubahan sesi langsung terlihat
+    exit();
+}
+
+// Cek jika session untuk konten terakhir ada
+if(isset($_SESSION['lastDisplayedContent'])) {
+    $lastDisplayedContent = $_SESSION['lastDisplayedContent'];
+} else {
+    // Jika tidak ada, atur default ke konten pertama
+    $lastDisplayedContent = 'content1';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Waktu Saat Ini</title>
-<link rel="stylesheet" href="lib/css/sidebars.css">
-<script src="lib/js/sidebars.js"></script>
+<title>Konten Berbeda</title>
 </head>
-<body onload="displayTime()">
-  <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">Sidebar</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-          Home
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          Orders
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          Products
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          Customers
-        </a>
-      </li>
-    </ul>
-    <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" style="">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
-  </div>
+<body>
+
+<h1>Konten Berbeda</h1>
+<div id="content">
+  <!-- Konten akan dimuat di sini -->
+</div>
+
+<button onclick="showContent('content1')">Tampilkan Konten 1</button>
+<button onclick="showContent('content2')">Tampilkan Konten 2</button>
+<button onclick="showContent('content3')">Tampilkan Konten 3</button>
+
+<script>
+  // Fungsi untuk menampilkan konten sesuai tombol yang diklik
+  function showContent(contentId) {
+    var contents = document.getElementsByClassName("content");
+    for (var i = 0; i < contents.length; i++) {
+      contents[i].style.display = "none"; // Sembunyikan semua konten
+    }
+    document.getElementById(contentId).style.display = "block"; // Tampilkan konten yang sesuai dengan tombol yang diklik
+  }
+</script>
+
+<!-- Konten-konten -->
+<div id="content1" class="content" style="display: <?php echo $lastDisplayedContent == 'content1' ? 'block' : 'none'; ?>;">
+  <!-- Konten untuk tombol 1 -->
+  <h2>Konten 1</h2>
+  <p>Ini adalah konten untuk tombol 1.</p>
+</div>
+
+<div id="content2" class="content" style="display: <?php echo $lastDisplayedContent == 'content2' ? 'block' : 'none'; ?>;">
+  <!-- Konten untuk tombol 2 -->
+  <h2>Konten 2</h2>
+  <p>Ini adalah konten untuk tombol 2.</p>
+</div>
+
+<div id="content3" class="content" style="display: <?php echo $lastDisplayedContent == 'content3' ? 'block' : 'none'; ?>;">
+  <!-- Konten untuk tombol 3 -->
+  <h2>Konten 3</h2>
+  <p>Ini adalah konten untuk tombol 3.</p>
+</div>
+
 </body>
 </html>
