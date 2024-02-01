@@ -136,7 +136,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
 
             <div id="keluar" class="content">
                <!-- Konten untuk tombol keluar -->
-               <h4 class="text-center">Keluar Parkir</h2>
+               <h4 class="text-center">Keluar Parkir</h4 >
                   <form action="" method="post" class="row g-3 p-3">
                      <div class="col-auto g-3">
                         <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
@@ -213,6 +213,7 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                      <th class="p-2">Waktu Masuk</th>
                      <th class="p-2">Waktu Keluar</th>
                      <th class="p-2">Merk</th>
+                     <th class="p-2">Keterangan</th>
                   </tr>
 
                   <?php
@@ -245,6 +246,9 @@ $listKendaraan = query("SELECT * FROM k_keluar")
                               echo "Lainnya";
                            }
                            ?>
+                        </td>
+                        <td>
+                           <a class="btn btn-primary " href="img.php?img=<?= $row['ket'] ?>">Lihat Foto</a>
                         </td>
                      </tr>
                      <?php $i++; ?>

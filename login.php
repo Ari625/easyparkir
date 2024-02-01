@@ -28,7 +28,6 @@ if (isset($_POST["login"])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +38,6 @@ if (isset($_POST["login"])) {
    <link href="lib/css/sign-in.css" rel="stylesheet">
    <title>Login</title>
 </head>
-
 <body>
 
    <main class="form-signin w-100 m-auto row h-100 jusitify-content-center align-items-center">
@@ -70,5 +68,4 @@ if (isset($_POST["login"])) {
       </form>
    </main>
 </body>
-
 </html>
