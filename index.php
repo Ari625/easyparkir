@@ -143,7 +143,6 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                      <option value="4">Suzuki</option>
                      <option value="5">Lainnya</option>
                   </select>
-                  <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
                   <input type="file" name="gambar" id="gambar" class="mb-2">
                   <br>
                   <input type="submit" value="Kirim" name="kirimDataMasuk" class="btn btn-success w-100">
@@ -223,7 +222,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                <!-- Konten untuk tombol list kendaraan -->
                <h4 class=" text-center">List kendaraan</h4>
                <div class="d-flex flex-row-reverse">
-                  <a href="report.php" class="btn btn-success mb-2">
+                  <a href="report.php" class="btn btn-success mb-2" target="_blank">
                      <i class="bi bi-printer">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                            class="bi bi-printer" viewBox="0 0 16 16">
@@ -278,7 +277,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                               ?>
                            </td>
                            <td>
-                              <a class="btn btn-primary  " href="img.php?img=<?= $row['ket'] ?>">Lihat Foto</a>
+                              <a class="btn btn-primary  " href="img.php?img=<?= $row['ket'] ?>" target="_blank">Lihat Foto</a>
                            </td>
                         </tr>
                         <?php $i++; ?>
