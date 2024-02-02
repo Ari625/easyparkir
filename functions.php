@@ -1,5 +1,7 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "easyparkir");
+$icon = "<link rel='shortcut icon' href='lib/icon/icon.png' type='image/x-icon'>";
+$title = "<title>EASY PARKIR</title>";
 
 function query($query)
 {
@@ -43,7 +45,7 @@ function tambahDataKeluar($data)
    if (!$gambar) {
       return false;
    }
-   
+
    try {
       $query = "INSERT INTO k_keluar value ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
       mysqli_query($conn, $query);
