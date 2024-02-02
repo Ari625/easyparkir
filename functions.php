@@ -43,9 +43,13 @@ function tambahDataKeluar($data)
    if (!$gambar) {
       return false;
    }
-
-   $query = "INSERT INTO k_keluar value ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
-   mysqli_query($conn, $query);
+   
+   try {
+      $query = "INSERT INTO k_keluar value ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
+      mysqli_query($conn, $query);
+   } catch (exception $e) {
+      return 0;
+   }
 
    return mysqli_affected_rows($conn);
 }
