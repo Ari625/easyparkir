@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toggle Sidebar</title>
+    <style>
+      .container {
+    display: flex;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #333;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-250px);
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.open-btn {
+    display: block;
+    margin: 20px;
+}
+
+.close-btn {
+    margin: 20px;
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">Close</button>
+            <!-- Isi Sidebar -->
+            <ul>
+                <li><a href="#">Menu 1</a></li>
+                <li><a href="#">Menu 2</a></li>
+                <li><a href="#">Menu 3</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <button class="open-btn" onclick="toggleSidebar()">Open</button>
+            <!-- Isi Konten -->
+            <h1>Main Content</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit justo et turpis hendrerit vestibulum.</p>
+        </div>
+    </div>
+    <script>
+       function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('active');
+}
+    </script>
+</body>
+</html>
