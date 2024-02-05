@@ -49,8 +49,10 @@ function tambahDataKeluar($data)
    }
 
    try {
-      $query = "INSERT INTO k_keluar value ('$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
+      $query = "INSERT INTO k_keluar value ('','$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
       mysqli_query($conn, $query);
+      $query2 = "DELETE FROM `k_masuk` WHERE `k_masuk`.`plat_no` = '$platNo'";
+      mysqli_query($conn, $query2);
    } catch (exception $e) {
       return 0;
    }
