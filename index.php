@@ -286,13 +286,17 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                </div>
             </div>
          </div>
-         <div class="card-footer">
-            <text class="text-secondary">
-               &copy2024
-            </text>
-         </div>
+         
       </div>
    </div>
+
+   <footer>
+      <div class="position-absolute bottom-0 start-0 p-1">
+         <text class="text-secondary">
+            &copy;2024
+         </text>
+      </div>
+   </footer>
 
    <script src="lib/js/script.js"></script>
 </body>

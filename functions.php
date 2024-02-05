@@ -26,10 +26,12 @@ function tambahDataMasuk($data)
       return false;
    }
 
-
-   $query = "INSERT INTO k_masuk value('$platNo','$waktuMasuk','$merk', '$gambar')";
-   mysqli_query($conn, $query);
-
+   try {
+      $query = "INSERT INTO k_masuk value ('$platNo','$waktuMasuk','$merk', '$gambar')";
+      mysqli_query($conn, $query);
+   } catch (exception $e) {
+      return 0;
+   }
    return mysqli_affected_rows($conn);
 }
 

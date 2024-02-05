@@ -64,8 +64,15 @@ if (isset($_POST["login"])) {
             <label for="floatingPassword">Password</label>
          </div>
          <button class="btn btn-success w-100 py-2" type="submit" name="login">LOGIN</button>
-         <p class="mt-5 mb-3 text-body-secondary">&copy;2024</p>
       </form>
    </main>
+
+   <footer>
+      <div class="position-absolute bottom-0 start-0 p-1">
+         <text class="text-secondary">
+            &copy;2024
+         </text>
+      </div>
+   </footer>
 </body>
 </html>
