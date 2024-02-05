@@ -275,9 +275,10 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                               }
                               ?>
                            </td>
-                           <td>
-                              <a class="btn btn-primary  " href="img.php?img=<?= $row['ket'] ?>" target="_blank">Lihat
-                                 Foto</a>
+                           <td class="text-center">
+                              <a class="btn  " href="img.php?img=<?= $row['ket'] ?>">
+                                 <img src="img/<?= $row['ket']; ?>" width="70" alt="" class="">
+                              </a>
                            </td>
                         </tr>
                         <?php $i++; ?>
