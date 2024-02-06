@@ -203,7 +203,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                            </div>
                            <br>
                            <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
-                           <input type="file" name="gambar" id="gambar">
+                           <input type="hidden" name="gambar" id="gambar" value="<?= $dataKendaraanMasuk["ket"] ?>">
                            <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
                         </form>
                      </div>

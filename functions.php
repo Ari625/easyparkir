@@ -42,11 +42,7 @@ function tambahDataKeluar($data)
    $merk = htmlspecialchars($data["merk"]);
    $waktuMasuk = $data["waktuMasuk"];
    $waktuKeluar = $data["waktuKeluar"];
-
-   $gambar = upload();
-   if (!$gambar) {
-      return false;
-   }
+   $gambar = $data["gambar"];
 
    try {
       $query = "INSERT INTO k_keluar value ('','$platNo','$waktuMasuk','$waktuKeluar','$merk', '$gambar')";
