@@ -21,7 +21,7 @@ function tambahDataMasuk($data)
    $merk = htmlspecialchars($data["merk"]);
    $waktuMasuk = $data["waktuMasuk"];
 
-   $gambar = uploadMasuk();
+   $gambar = upload();
    if (!$gambar) {
       return false;
    }
@@ -43,7 +43,7 @@ function tambahDataKeluar($data)
    $waktuMasuk = $data["waktuMasuk"];
    $waktuKeluar = $data["waktuKeluar"];
 
-   $gambar = uploadKeluar();
+   $gambar = upload();
    if (!$gambar) {
       return false;
    }
@@ -60,7 +60,7 @@ function tambahDataKeluar($data)
    return mysqli_affected_rows($conn);
 }
 
-function uploadMasuk()
+function upload()
 {
    $namaFile = $_FILES["gambar"]["name"];
    $ukuranFile = $_FILES["gambar"]["size"];
@@ -97,43 +97,7 @@ function uploadMasuk()
 
    return $namaFileBaru;
 }
-function uploadKeluar()
-{
-   $namaFile = $_FILES["gambar"]["name"];
-   $ukuranFile = $_FILES["gambar"]["size"];
-   $error = $_FILES["gambar"]["error"];
-   $tmpName = $_FILES["gambar"]["tmp_name"];
 
-   if ($error === 4) {
-      echo "<script>
-            alert('Pilih Gambar Terlebih Dahulu');
-            </script>";
-      return false;
-   }
-   $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-   $ekstensiGambar = explode('.', $namaFile);
-   $ekstensiGambar = strtolower(end($ekstensiGambar));
-   if (!in_array($ekstensiGambar, $ekstensiGambarValid)) {
-      echo "<script>
-            alert('Yang Anda Upload Bukan Gambar!');
-            </script>";
-      return false;
-   }
-   if ($ukuranFile > 2097152) {
-      echo "<script>
-            alert('Ukuran Gambar Terlalu Besar');
-            </script>";
-      return false;
-   }
-
-   $namaFileBaru = uniqid();
-   $namaFileBaru .= '.';
-   $namaFileBaru .= $ekstensiGambar;
-
-   move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
-
-   return $namaFileBaru;
-}
 function cari($keyword)
 {
    $query = "SELECT * FROM k_masuk WHERE plat_no LIKE '%$keyword%'";
