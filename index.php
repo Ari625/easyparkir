@@ -204,7 +204,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                            <br>
                            <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
                            <input type="hidden" name="gambar" id="gambar" value="<?= $dataKendaraanMasuk["ket"] ?>">
-                           <input type="submit" value="Kirim" name="submitKeluar" class="btn btn-secondary">
+                           <input type="submit" value="Keluar" name="submitKeluar" class="btn btn-secondary">
                         </form>
                      </div>
                   <?php else: ?>
@@ -219,7 +219,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
 
             <div id="listKendaraan" class="content" ">
                <!-- Konten untuk tombol list kendaraan -->
-               <h4 class=" text-center">List kendaraan</h4>
+               <h4 class=" text-center">History</h4>
                <div class="d-flex flex-row-reverse">
                   <a href="report.php" class="btn btn-success mb-2" target="_blank">
                      <i class="bi bi-printer">
