@@ -121,8 +121,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                   <button onclick="showContent('keluar')" class="btn nav-item text-white fw-bold ">Keluar</button>
                </li>
                <li class="nav-item">
-                  <button onclick="showContent('listKendaraan')" class="btn nav-item text-white fw-bold ">List
-                     Kendaraan</button>
+                  <button onclick="showContent('listKendaraan')" class="btn nav-item text-white fw-bold ">History</button>
                </li>
             </ul>
          </div>
