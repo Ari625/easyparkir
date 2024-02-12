@@ -13,14 +13,14 @@ if (isset($_POST["kirimDataMasuk"])) {
       echo "
       <script>
          alert('Data Berhasil Ditambahkan');
-         document.location.href = 'index.php';
+         document.location.href = 'index.php#masuk';
       </script>
       ";
    } else {
       echo "
       <script>
          alert('Data Gagal Ditambahkan');
-         document.location.href = 'index.php';
+         document.location.href = 'index.php#masuk';
       </script>
       ";
    }
@@ -42,7 +42,7 @@ if (isset($_POST["submitKeluar"])) {
       echo "
       <script>
          alert('Data Berhasil Ditambahkan');
-         document.location.href = 'index.php';
+         document.location.href = 'index.php#keluar';
       </script>
       ";
       exit;
@@ -50,7 +50,7 @@ if (isset($_POST["submitKeluar"])) {
       echo "
       <script>
          alert('Data Gagal Ditambahkan');
-         document.location.href = 'index.php';
+         document.location.href = 'index.php#keluar';
       </script>
       ";
    }
