@@ -78,7 +78,7 @@ function upload()
             </script>";
       return false;
    }
-   if ($ukuranFile > 2097152) {
+   if ($ukuranFile > 209715200) {
       echo "<script>
             alert('Ukuran Gambar Terlalu Besar');
             </script>";
