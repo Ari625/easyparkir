@@ -140,13 +140,13 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                </form>
             </div>
 
-            <div id="keluar" class="content">
+            <div id="keluar" class="content" style="width: 300px;">
                <!-- Konten untuk tombol keluar -->
                <h4 class="text-center">Keluar Parkir</h4>
                <form action="" method="post" class="row g-3 p-3">
                   <div class="col-auto g-3">
                      <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
-                        class="g-col-6 form-control" autofocus>
+                        class="g-col-6 form-control" autofocus size="35" >
                   </div>
                   <div class="col-auto">
                      <input type="submit" value="Cari!" name="btnCari" class=" btn btn-success">
