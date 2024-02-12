@@ -31,7 +31,7 @@ $img = $_GET["img"];
       </div>
    </nav>
    <div class="p-2">
-      <a href="index.php" class="">
+      <a href="index.php#masuk" class="">
          <i class="bi bi-arrow-left-circle">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                class="bi bi-arrow-left-circle " viewBox="0 0 16 16">

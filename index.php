@@ -70,13 +70,6 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
    <style>
-      .content {
-         display: none;
-      }
-
-      #masuk {
-         display: block;
-      }
    </style>
 </head>
 
@@ -115,13 +108,13 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
          <div class="card-header bg-success">
             <ul class="nav justify-content-center">
                <li class="nav-item">
-                  <button onclick="showContent('masuk')" class="btn nav-item text-white fw-bold ">Masuk</button>
+                  <a href="#masuk" class="btn nav-item text-white fw-bold ">Masuk</a>
                </li>
                <li class="nav-item">
-                  <button onclick="showContent('keluar')" class="btn nav-item text-white fw-bold ">Keluar</button>
+                  <a href="#keluar" class="btn nav-item text-white fw-bold ">Keluar</a>
                </li>
                <li class="nav-item">
-                  <button onclick="showContent('listKendaraan')" class="btn nav-item text-white fw-bold ">History</button>
+                  <a href="#history" class="btn nav-item text-white fw-bold ">History</a>
                </li>
             </ul>
          </div>
@@ -216,7 +209,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                <?php endif ?>
             </div>
 
-            <div id="listKendaraan" class="content" ">
+            <div id="history" class="content" ">
                <!-- Konten untuk tombol list kendaraan -->
                <h4 class=" text-center">History</h4>
                <div class="d-flex flex-row-reverse">
@@ -297,7 +290,25 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
          </text>
       </div>
    </footer>
+   <script>
+      function handleHashChange() {
+         const hash = window.location.hash;
+         const contentId = hash.slice(1);
+         const contentElements = document.querySelectorAll('.content');
 
+         contentElements.forEach(element => {
+            element.style.display = 'none';
+         });
+
+         const selectedContent = document.getElementById(contentId);
+         if (selectedContent) {
+            selectedContent.style.display = 'block';
+         }
+      }
+
+      window.addEventListener('DOMContentLoaded', handleHashChange);
+      window.addEventListener('hashchange', handleHashChange);
+   </script>
    <script src="lib/js/script.js"></script>
 </body>
 

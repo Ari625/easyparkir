@@ -2,7 +2,7 @@
 session_start();
 require "functions.php";
 if (isset($_SESSION["login"])) {
-   header("location: index.php");
+   header("location: index.php#masuk");
    exit;
 }
 
@@ -16,7 +16,7 @@ if (isset($_POST["login"])) {
       if ($password == $row["password"]) {
          $_SESSION["login"] = true;
 
-         header("Location: index.php");
+         header("Location: index.php#masuk");
          exit;
       }
    }
