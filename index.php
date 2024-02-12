@@ -125,8 +125,8 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                <h4 class="text-center">Masuk Parkir</h4>
                <form action="" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
-                  <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor">
-                  <select class="form-select mt-2 mb-2" aria-label="Default select example" name="merk" id="merk">
+                  <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor" required>
+                  <select class="form-select mt-2 mb-2" aria-label="Default select example" name="merk" id="merk" required>
                      <option selected>Pilih Merk</option>
                      <option value="1">Yamaha</option>
                      <option value="2">Honda</option>
