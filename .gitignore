@@ -1,4 +1,4 @@
-img/
+img/*
 lib/fpdf184/tutorial
 lib/fpdf184/doc
 lib/fpdf184/changelog.htm 
