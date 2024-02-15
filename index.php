@@ -38,7 +38,7 @@ if (isset($_POST["btnCari"])) {
 }
 
 if (isset($_POST["submitKeluar"])) {
-   if (tambahDataKeluar($_POST) > 0) {
+   if (tambahDataKeluar($_POST) > 0) { 
       echo "
       <script>
          alert('Data Berhasil Ditambahkan');
