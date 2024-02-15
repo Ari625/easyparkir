@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 30 Jan 2024 pada 08.58
+-- Waktu pembuatan: 15 Feb 2024 pada 02.15
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `k_keluar` (
+  `id` int(11) NOT NULL,
   `plat_no` varchar(12) DEFAULT NULL,
   `waktu_masuk` datetime DEFAULT NULL,
   `waktu_keluar` datetime DEFAULT NULL,
@@ -44,17 +45,9 @@ CREATE TABLE `k_keluar` (
 CREATE TABLE `k_masuk` (
   `plat_no` varchar(12) NOT NULL,
   `waktu_masuk` datetime DEFAULT NULL,
-  `merk` char(1) NOT NULL,
+  `merk` char(1) DEFAULT NULL,
   `ket` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `k_masuk`
---
-
-INSERT INTO `k_masuk` (`plat_no`, `waktu_masuk`, `merk`, `ket`) VALUES
-('e 1231 pap', '2024-01-30 14:47:32', '2', '65b8a9a4aeaf9.jpg'),
-('E 1234 PAK', '2024-01-30 14:46:04', '1', '65b8a9493078f.png');
 
 -- --------------------------------------------------------
 
@@ -72,7 +65,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`username`, `password`) VALUES
-('admin', '$2y$10$2qPCR8ny5nU1FQcyPpvu1eS1eJvw9rjsgeUXjvt6rbjYK3olcchUS');
+('admin', '$2y$10$4gJFRTOEXFoz1jtDoHPlVukc4ajabTHcbEQBSbF..ySiHcNiZrnVC');
 
 --
 -- Indexes for dumped tables
@@ -82,27 +75,23 @@ INSERT INTO `users` (`username`, `password`) VALUES
 -- Indeks untuk tabel `k_keluar`
 --
 ALTER TABLE `k_keluar`
-  ADD UNIQUE KEY `waktu_masuk` (`waktu_masuk`),
-  ADD UNIQUE KEY `waktu_keluar` (`waktu_keluar`),
-  ADD KEY `plat_no` (`plat_no`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeks untuk tabel `k_masuk`
 --
 ALTER TABLE `k_masuk`
-  ADD PRIMARY KEY (`plat_no`),
-  ADD UNIQUE KEY `waktu_masuk` (`waktu_masuk`);
+  ADD PRIMARY KEY (`plat_no`);
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- Ketidakleluasaan untuk tabel `k_keluar`
+-- AUTO_INCREMENT untuk tabel `k_keluar`
 --
 ALTER TABLE `k_keluar`
-  ADD CONSTRAINT `k_keluar_ibfk_1` FOREIGN KEY (`plat_no`) REFERENCES `k_masuk` (`plat_no`),
-  ADD CONSTRAINT `k_keluar_ibfk_2` FOREIGN KEY (`waktu_masuk`) REFERENCES `k_masuk` (`waktu_masuk`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
