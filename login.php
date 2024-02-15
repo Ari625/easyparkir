@@ -10,7 +10,7 @@ if (isset($_POST["login"])) {
    $username = $_POST["username"];
    $password = $_POST["password"];
 
-   $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '$username'");
+   $result = mysqli_query($conn, "SELECT * FROM users WHERE username = '". mysqli_real_escape_string($conn, $username) ."'");
    if (mysqli_num_rows($result) === 1) {
       $row = mysqli_fetch_assoc($result);
       if (password_verify($password, $row["password"]) ) {
@@ -61,7 +61,7 @@ if (isset($_POST["login"])) {
          </div>
          <div class="form-floating">
             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
-            <label for="floatingPassword">Password</label>
+            <label for="floatingPassword">password</label>
          </div>
          <button class="btn btn-success w-100 py-2" type="submit" name="login">LOGIN</button>
       </form>
