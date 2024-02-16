@@ -1,4 +1,6 @@
 <?php
+
+//koneksi ke database
 $conn = mysqli_connect("localhost", "root", "", "easyparkir");
 $icon = "<link rel='shortcut icon' href='lib/icon/icon.png' type='image/x-icon'>";
 $title = "<title>EASY PARKIR</title>";
@@ -14,6 +16,7 @@ function query($query)
    return $rows;
 }
 
+//function untuk menambahkan data masuk
 function tambahDataMasuk($data)
 {
    global $conn;
@@ -35,6 +38,7 @@ function tambahDataMasuk($data)
    return mysqli_affected_rows($conn);
 }
 
+//function untuk menambahkan data keluar
 function tambahDataKeluar($data)
 {
    global $conn;
@@ -56,6 +60,7 @@ function tambahDataKeluar($data)
    return mysqli_affected_rows($conn);
 }
 
+//function untuk upload gambar
 function upload()
 {
    $namaFile = $_FILES["gambar"]["name"];
@@ -94,6 +99,7 @@ function upload()
    return $namaFileBaru;
 }
 
+//function untuk pencarian
 function cari($keyword)
 {
    $query = "SELECT * FROM k_masuk WHERE plat_no LIKE '%$keyword%'";

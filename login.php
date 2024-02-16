@@ -6,6 +6,7 @@ if (isset($_SESSION["login"])) {
    exit;
 }
 
+//kode akan dijalankan jika tombol login ditekan
 if (isset($_POST["login"])) {
    $username = $_POST["username"];
    $password = $_POST["password"];

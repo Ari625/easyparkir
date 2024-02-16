@@ -38,7 +38,7 @@ if (isset($_POST["btnCari"])) {
 }
 
 if (isset($_POST["submitKeluar"])) {
-   if (tambahDataKeluar($_POST) > 0) { 
+   if (tambahDataKeluar($_POST) > 0) {
       echo "
       <script>
          alert('Data Berhasil Ditambahkan');
@@ -75,6 +75,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
 
 <body onload="displayTime()">
 
+   <!-- navbar -->
    <nav class="navbar bg-body-secondary shadow-sm">
       <div class="container-fluid">
          <span class="navbar-brand mb-0 h1">
@@ -82,29 +83,38 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                EASY PARKIR
             </text>
          </span>
-         <span>
-            <div class="">
-               <a name="logout" class="btn btn-danger" href="logout.php">
-                  <i class="bi bi-box-arrow-in-left">
-                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" fill="currentColor"
-                        class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                           d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z" />
-                        <path fill-rule="evenodd"
-                           d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
-                     </svg>
-                  </i>
-                  Logout
+         <div class="d-flex flex-row-reverse">
+            <span class="p-1" >
+               <div class="">
+                  <a name="logout" class="btn btn-danger" href="logout.php">
+                     <i class="bi bi-box-arrow-in-left">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" fill="currentColor"
+                           class="bi bi-box-arrow-in-left" viewBox="0 0 16 16">
+                           <path fill-rule="evenodd"
+                              d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z" />
+                           <path fill-rule="evenodd"
+                              d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
+                        </svg>
+                     </i>
+                     Logout
+                  </a>
+               </div>
+            </span>
+            <span class="p-1">
+               <a href="history.php" name="history" class="btn text-success fw-bold" >
+                  History
                </a>
-            </div>
-         </span>
+            </span>
+         </div>
       </div>
    </nav>
    </div>
+   <!-- navbar end -->
 
 
    <div class=" position-absolute top-50 start-50 translate-middle">
       <div class="card" style="height : 350px; width: auto;">
+         <!-- card header -->
          <div class="card-header bg-success">
             <ul class="nav justify-content-center">
                <li class="nav-item">
@@ -118,6 +128,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                </li>
             </ul>
          </div>
+         <!-- card header end -->
 
          <div class="card-body overflow-y-scroll">
             <div id="masuk" class="content">
@@ -125,8 +136,10 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                <h4 class="text-center">Masuk Parkir</h4>
                <form action="" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="waktuMasuk" value="<?= date("Y-m-d H:i:s"); ?>">
-                  <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor" required>
-                  <select class="form-select mt-2 mb-2" aria-label="Default select example" name="merk" id="merk" required>
+                  <input type="text" name="platNo" id="platNo" class="form-control" placeholder="Masukan Plat Nomor"
+                     required>
+                  <select class="form-select mt-2 mb-2" aria-label="Default select example" name="merk" id="merk"
+                     required>
                      <option selected>Pilih Merk</option>
                      <option value="1">Yamaha</option>
                      <option value="2">Honda</option>
@@ -146,7 +159,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                <form action="" method="post" class="row g-3 p-3">
                   <div class="col-auto g-3">
                      <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
-                        class="g-col-6 form-control" autofocus size="35" >
+                        class="g-col-6 form-control" autofocus size="35">
                   </div>
                   <div class="col-auto">
                      <input type="submit" value="Cari!" name="btnCari" class=" btn btn-success">
