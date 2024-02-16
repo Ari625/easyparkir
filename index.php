@@ -56,8 +56,9 @@ if (isset($_POST["submitKeluar"])) {
    }
 }
 
-$listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
-   ?>
+$listKendaraanMasuk = query("SELECT * FROM k_masuk ORDER BY waktu_masuk ASC");
+$jumlahKendaraanMasuk = count($listKendaraanMasuk);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,7 +85,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
             </text>
          </span>
          <div class="d-flex flex-row-reverse">
-            <span class="p-1" >
+            <span class="p-1">
                <div class="">
                   <a name="logout" class="btn btn-danger" href="logout.php">
                      <i class="bi bi-box-arrow-in-left">
@@ -101,7 +102,7 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                </div>
             </span>
             <span class="p-1">
-               <a href="history.php" name="history" class="btn text-success fw-bold" >
+               <a href="history.php" name="history" class="btn text-success fw-bold">
                   History
                </a>
             </span>
@@ -121,10 +122,10 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                   <a href="#masuk" class="btn nav-item text-white fw-bold ">Masuk</a>
                </li>
                <li class="nav-item">
-                  <a href="#keluar" class="btn nav-item text-white fw-bold ">Keluar</a>
+                  <a href="#kendaraanmasuk" class="btn nav-item text-white fw-bold ">Kendaraan Masuk</a>
                </li>
                <li class="nav-item">
-                  <a href="#history" class="btn nav-item text-white fw-bold ">History</a>
+                  <a href="#keluar" class="btn nav-item text-white fw-bold ">Keluar</a>
                </li>
             </ul>
          </div>
@@ -202,8 +203,8 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                               </div>
                               <div class="col">
                                  <label for="waktuKeluar">Waktu Keluar</label>
-                                 <input type="text" name="waktuKeluar" id="waktuKeluar" class="form-control mb-1"
-                                    value="<?= date("Y-m-d H:i:s"); ?>">
+                                 <input type="text" value="-" readonly id="waktuKeluar" class="form-control mb-1">
+                                 <input type="hidden" name="waktuKeluar" value="<?= date("Y-m-d H:i:s"); ?>">
                               </div>
                            </div>
                            <br>
@@ -222,21 +223,13 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                <?php endif ?>
             </div>
 
-            <div id="history" class="content" ">
+            <div id="kendaraanmasuk" class="content" ">
                <!-- Konten untuk tombol list kendaraan -->
-               <h4 class=" text-center">History</h4>
-               <div class="d-flex flex-row-reverse">
-                  <a href="report.php" class="btn btn-success mb-2" target="_blank">
-                     <i class="bi bi-printer">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                           class="bi bi-printer" viewBox="0 0 16 16">
-                           <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
-                           <path
-                              d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
-                        </svg>
-                     </i>
-                     Cetak
-                  </a>
+               <h4 class=" text-center">Kendaraan masuk</h4>
+               <div class="p-1 bg-secondary mb-2 d-inline-flex rounded-1  ">
+                  <h6 class=" text-white m-1">Jumlah kendaraan yang parkir :
+                     <?= $jumlahKendaraanMasuk; ?>
+                  </h6>
                </div>
                <div class="">
                   <table class="table-bordered">
@@ -244,14 +237,13 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                         <th class="p-2">No.</th>
                         <th class="p-2">Plat Nomor</th>
                         <th class="p-2">Waktu Masuk</th>
-                        <th class="p-2">Waktu Keluar</th>
                         <th class="p-2">Merk</th>
                         <th class="p-2">Keterangan</th>
                      </tr>
 
                      <?php
                      $i = 1;
-                     foreach ($listKendaraan as $row):
+                     foreach ($listKendaraanMasuk as $row):
                         ?>
                         <tr>
                            <td class="p-1 text-center">
@@ -262,9 +254,6 @@ $listKendaraan = query("SELECT * FROM k_keluar ORDER BY waktu_masuk ASC")
                            </td>
                            <td class="p-1">
                               <?= $row["waktu_masuk"] ?>
-                           </td>
-                           <td class="p-1">
-                              <?= $row["waktu_keluar"] ?>
                            </td>
                            <td class="p-1">
                               <?php if ($row["merk"] == 1) {

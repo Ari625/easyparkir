@@ -20,6 +20,8 @@ if (isset($_POST["cari"])) {
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <?= $icon ?>
+   <?= $title ?>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
    <title></title>
@@ -68,10 +70,23 @@ if (isset($_POST["cari"])) {
          <form action="" method="post">
             <div class="input-group mb-3">
                <input type="text" class="form-control" placeholder="Masukan Plat Nomor" aria-label="Masukan Plat Nomor "
-                  aria-describedby="button-addon2" name="keyword">
+                  aria-describedby="button-addon2" name="keyword" autofocus>
                <button class="btn btn-outline-primary" type="submit" id="button-addon2" name="cari">Cari!</button>
             </div>
          </form>
+         <div class="d-flex flex-row-reverse">
+            <a href="report.php" class="btn btn-success mb-2" target="_blank">
+               <i class="bi bi-printer">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-printer" viewBox="0 0 16 16">
+                     <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
+                     <path
+                        d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
+                  </svg>
+               </i>
+               Cetak
+            </a>
+         </div>
          <div class=" overflow-y-scroll ">
             <table class="card-header table table-bordered  table-responsive  ">
                <tr>
