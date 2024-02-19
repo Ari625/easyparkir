@@ -55,9 +55,7 @@ if (isset($_POST["cari"])) {
                </div>
             </span>
             <span class="p-1">
-               <a href="index.php#masuk" name="history" class="btn fw-bold ">
-                  Back
-               </a>
+               <button class="btn fw-bold" onclick="goBack()">Back</button>
             </span>
          </div>
       </div>
@@ -142,7 +140,7 @@ if (isset($_POST["cari"])) {
       </div>
    </main>
 
-
+   <script src="lib/js/script.js"></script>
 </body>
 
 </html>
