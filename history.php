@@ -55,7 +55,8 @@ if (isset($_POST["cari"])) {
                </div>
             </span>
             <span class="p-1">
-               <button class="btn fw-bold" onclick="goBack()">Back</button>
+               <!-- <button class="btn fw-bold" onclick="goBack()">Back</button> -->
+               <a href="index.php#masuk" class="btn fw-bold " >Back</a>
             </span>
          </div>
       </div>

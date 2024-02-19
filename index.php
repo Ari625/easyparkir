@@ -157,13 +157,11 @@ $jumlahKendaraanMasuk = count($listKendaraanMasuk);
             <div id="keluar" class="content" style="width: 300px;">
                <!-- Konten untuk tombol keluar -->
                <h4 class="text-center">Keluar Parkir</h4>
-               <form action="" method="post" class="row g-3 p-3">
-                  <div class="col-auto g-3">
-                     <input type="text" name="keyword" id="" placeholder="Masukan Plat Nomor"
-                        class="g-col-6 form-control" autofocus size="35">
-                  </div>
-                  <div class="col-auto">
-                     <input type="submit" value="Cari!" name="btnCari" class=" btn btn-success">
+               <form action="" method="post">
+                  <div class="input-group mb-3">
+                     <input type="text" class="form-control" placeholder="Masukan Plat Nomor"
+                        aria-label="Masukan Plat Nomor " aria-describedby="button-addon2" name="keyword" autofocus>
+                     <button class="btn btn-outline-primary" type="submit" id="button-addon2" name="btnCari">Cari!</button>
                   </div>
                </form>
                <?php if (isset($_POST["btnCari"])): ?>
@@ -210,7 +208,7 @@ $jumlahKendaraanMasuk = count($listKendaraanMasuk);
                            <br>
                            <img src="img/<?= $dataKendaraanMasuk['ket']; ?>" width="70" alt="" class="">
                            <input type="hidden" name="gambar" id="gambar" value="<?= $dataKendaraanMasuk["ket"] ?>">
-                           <input type="submit" value="Keluar" name="submitKeluar" class="btn btn-secondary">
+                           <input type="submit" value="Keluar" name="submitKeluar" class="btn btn-success">
                         </form>
                      </div>
                   <?php else: ?>
